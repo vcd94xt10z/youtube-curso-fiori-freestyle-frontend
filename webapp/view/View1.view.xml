@@ -1,7 +1,46 @@
 <mvc:View controllerName="zov.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:t="sap.ui.table"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
         <Button text="Hello World" press="onPress"/>
+
+        <VBox class="sapUiTinyMargin">
+            <Label text="Id do Cliente"/>
+            <Input />
+        </VBox>
+
+        <t:Table id="table1"
+            rows="{/OVCabSet}"
+            visibleRowCount="10"
+            threshold="10"
+            class="sapUiTinyMargin"
+            selectionMode="MultiToggle">
+            <t:toolbar>
+                <OverflowToolbar>
+                    <Title id="title" text="Ordens"></Title>
+                </OverflowToolbar>
+            </t:toolbar>
+            <t:columns>
+                <t:Column width="4rem" sortProperty="OrdemId">
+                    <Label text="OrdemId" />
+                    <t:template>
+                        <Text text="{OrdemId}" wrapping="false" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="10rem" sortProperty="ClienteId" filterProperty="ClienteId" autoResizable="true">
+                    <Label text="Id do cliente" />
+                    <t:template>
+                        <Text text="{ClienteId}" wrapping="false" />
+                    </t:template>
+                </t:Column>
+                <t:Column width="10rem" sortProperty="TotalItens" filterProperty="TotalItens" autoResizable="true">
+                    <Label text="Total Itens" />
+                    <t:template>
+                        <Text text="{TotalItens}" wrapping="false" />
+                    </t:template>
+                </t:Column>
+            </t:columns>
+        </t:Table>
     </Page>
 </mvc:View>
