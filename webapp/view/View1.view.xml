@@ -1,46 +1,66 @@
 <mvc:View controllerName="zov.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns:t="sap.ui.table"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
-        <Button text="Hello World" press="onPress"/>
 
-        <VBox class="sapUiTinyMargin">
-            <Label text="Id do Cliente"/>
-            <Input />
-        </VBox>
-
-        <t:Table id="table1"
-            rows="{/OVCabSet}"
-            visibleRowCount="10"
-            threshold="10"
-            class="sapUiTinyMargin"
-            selectionMode="MultiToggle">
-            <t:toolbar>
-                <OverflowToolbar>
-                    <Title id="title" text="Ordens"></Title>
-                </OverflowToolbar>
-            </t:toolbar>
-            <t:columns>
-                <t:Column width="4rem" sortProperty="OrdemId">
-                    <Label text="OrdemId" />
-                    <t:template>
-                        <Text text="{OrdemId}" wrapping="false" />
-                    </t:template>
-                </t:Column>
-                <t:Column width="10rem" sortProperty="ClienteId" filterProperty="ClienteId" autoResizable="true">
-                    <Label text="Id do cliente" />
-                    <t:template>
-                        <Text text="{ClienteId}" wrapping="false" />
-                    </t:template>
-                </t:Column>
-                <t:Column width="10rem" sortProperty="TotalItens" filterProperty="TotalItens" autoResizable="true">
-                    <Label text="Total Itens" />
-                    <t:template>
-                        <Text text="{TotalItens}" wrapping="false" />
-                    </t:template>
-                </t:Column>
-            </t:columns>
-        </t:Table>
+        <f:Form id="FormChange354" editable="true">
+            <f:title>
+                <core:Title text="Calculadora" />
+            </f:title>
+            <f:layout>
+                <f:ResponsiveGridLayout
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false" />
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                    <f:formElements>
+                        <f:FormElement label="1º Bimestre">
+                            <f:fields>
+                                <Input value="" id="b1"/>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="2º Bimestre">
+                            <f:fields>
+                                <Input value="" id="b2"/>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="3º Bimestre">
+                            <f:fields>
+                                <Input value="" id="b3"/>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="4º Bimestre">
+                            <f:fields>
+                                <Input value="" id="b4"/>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Resultado">
+                            <f:fields>
+                                <Input value="" id="resultado" editable="false"/>
+                            </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="">
+                            <f:fields>
+                                <Button text="Calcular" press="onCalcular"/>
+                            </f:fields>
+                        </f:FormElement>
+                    </f:formElements>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
     </Page>
 </mvc:View>
