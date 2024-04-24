@@ -1,0 +1,22 @@
+[
+    {
+        "OrdemId": 1,
+        "DataCriacao": "/Date(866047231000)/",
+        "CriadoPor": "ABAP1",
+        "ClienteId": 1,
+        "TotalItens": 100.00,
+        "TotalFrete": 10.00,
+        "TotalOrdem": 110.00,
+        "Status": "N"
+    },
+    {
+        "OrdemId": 2,
+        "DataCriacao": "/Date(548931236000)/",
+        "CriadoPor": "JOAO",
+        "ClienteId": 2,
+        "TotalItens": 150.00,
+        "TotalFrete": 10.00,
+        "TotalOrdem": 160.00,
+        "Status": "L"
+    }
+]

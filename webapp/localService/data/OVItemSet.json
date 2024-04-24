@@ -1,0 +1,29 @@
+[
+    {
+        "OrdemId": 1,
+        "ItemId": 1,
+        "Material": "100",
+        "Descricao": "PILHA",
+        "Quantidade": 1,
+        "PrecoUni": 10.00,
+        "PrecoTot": 10.00
+    },
+    {
+        "OrdemId": 1,
+        "ItemId": 2,
+        "Material": "200",
+        "Descricao": "TECLADO",
+        "Quantidade": 2,
+        "PrecoUni": 50.00,
+        "PrecoTot": 100.00
+    },
+    {
+        "OrdemId": 2,
+        "ItemId": 1,
+        "Material": "100",
+        "Descricao": "PILHA",
+        "Quantidade": 5,
+        "PrecoUni": 10.00,
+        "PrecoTot": 50.00
+    }
+]
