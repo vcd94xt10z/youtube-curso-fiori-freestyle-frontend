@@ -4,63 +4,15 @@
     xmlns:f="sap.ui.layout.form"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
+        <Text core:require="{ formatMessage: 'sap/base/strings/formatMessage' }"
+          text="{
+            parts:[
+              {path:'i18n>welcomeMsg'},
+              {path:'/usuario/nome'}
+            ],
+            formatter: 'formatMessage'
+        }"/>
 
-        <f:Form id="FormChange354" editable="true">
-            <f:title>
-                <core:Title text="Calculadora" />
-            </f:title>
-            <f:layout>
-                <f:ResponsiveGridLayout
-                    labelSpanXL="3"
-                    labelSpanL="3"
-                    labelSpanM="3"
-                    labelSpanS="12"
-                    adjustLabelSpan="false"
-                    emptySpanXL="4"
-                    emptySpanL="4"
-                    emptySpanM="4"
-                    emptySpanS="0"
-                    columnsXL="1"
-                    columnsL="1"
-                    columnsM="1"
-                    singleContainerFullSize="false" />
-            </f:layout>
-            <f:formContainers>
-                <f:FormContainer>
-                    <f:formElements>
-                        <f:FormElement label="1º Bimestre">
-                            <f:fields>
-                                <Input value="" id="b1"/>
-                            </f:fields>
-                        </f:FormElement>
-                        <f:FormElement label="2º Bimestre">
-                            <f:fields>
-                                <Input value="" id="b2"/>
-                            </f:fields>
-                        </f:FormElement>
-                        <f:FormElement label="3º Bimestre">
-                            <f:fields>
-                                <Input value="" id="b3"/>
-                            </f:fields>
-                        </f:FormElement>
-                        <f:FormElement label="4º Bimestre">
-                            <f:fields>
-                                <Input value="" id="b4"/>
-                            </f:fields>
-                        </f:FormElement>
-                        <f:FormElement label="Resultado">
-                            <f:fields>
-                                <Input value="" id="resultado" editable="false"/>
-                            </f:fields>
-                        </f:FormElement>
-                        <f:FormElement label="">
-                            <f:fields>
-                                <Button text="Calcular" press="onCalcular"/>
-                            </f:fields>
-                        </f:FormElement>
-                    </f:formElements>
-                </f:FormContainer>
-            </f:formContainers>
-        </f:Form>
+        <Button text="Exibir Mensagem" press="onExibirMensagem"/>
     </Page>
 </mvc:View>
