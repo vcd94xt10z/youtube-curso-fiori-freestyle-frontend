@@ -5,36 +5,24 @@
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
       <VBox class="sapUiTinyMargin">
-        <Label text="Model padrão da view (origem: controller)"/>
-        <Text text="{/usuario/nome}"/>
+        <Label text="One Way: Model → View"/>
+        <Input value="{oneway>/usuario/nome}"/>
+        <Text text="{oneway>/usuario/nome}"/>
+        <Button text="One Way - Adicionar Ponto Final" press="onTestOneWay"/>
 
         <Text text="--------------------------------------------------"/>
 
-        <Label text="Model 'dados' da view (origem: controller)"/>
-        <Text text="{dados>/usuario/nome}"/>
-
-        <Text text="--------------------------------------------------"/>
-        
-        <Label text="Model i18n - chave title (origem: manifest)"/>
-        <Text text="{i18n>title}"/>
+        <Label text="Two Way: Model ↔ View"/>
+        <Input value="{twoway>/usuario/nome}"/>
+        <Text text="{twoway>/usuario/nome}"/>
+        <Button text="Two Way - Adicionar Ponto Final" press="onTestTwoWay"/>
 
         <Text text="--------------------------------------------------"/>
 
-        <Label text="Model 'usuarios' (origem: manifest)"/>
-        <Text text="{usuarios>/0/id} - {usuarios>/0/nome}"/>
-
-        <Text text="--------------------------------------------------"/>
-        
-        <Label text="Model padrão do serviço (origem: manifest)"/>
-        <List headerText="Ordens" items="{ path: '/OVCabSet' }" >
-          <StandardListItem title="Ordem {OrdemId}" description="{CriadoPor}"/>
-        </List>
-
-        <Text text="{/OVCabSet(1)/OrdemId} - {/OVCabSet(1)/CriadoPor}"/>
-
-        <Text text="--------------------------------------------------"/>
-
-        <Button text="Testar Models" press="onTestModels"/>
+        <Label text="One Time: Model → View (uma vez)"/>
+        <Input value="{onetime>/usuario/nome}"/>
+        <Text text="{onetime>/usuario/nome}"/>
+        <Button text="One Time - Adicionar Ponto Final" press="onTestOneTime"/>
       </VBox>
     </Page>
 </mvc:View>
