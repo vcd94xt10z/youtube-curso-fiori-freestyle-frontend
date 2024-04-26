@@ -34,7 +34,7 @@ sap.ui.define([
                 var oData  = oModel.getData();
                 oData.usuario.nome += ".";
                 oModel.setData(oData);
-                oView.setModel(oModel);
+                //oView.setModel(oModel,"oneway");
             },
 
             onTestTwoWay: function(){
@@ -44,7 +44,7 @@ sap.ui.define([
                 var oData  = oModel.getData();
                 oData.usuario.nome += ".";
                 oModel.setData(oData);
-                oView.setModel(oModel);
+                //oView.setModel(oModel,"twoway");
             },
 
             onTestOneTime: function(){
@@ -57,7 +57,7 @@ sap.ui.define([
 
                 oData.usuario.nome += ".";
                 oModel.setData(oData);
-                oView.setModel(oModel);
+                //oView.setModel(oModel,"onetime");
             }
         });
     });
