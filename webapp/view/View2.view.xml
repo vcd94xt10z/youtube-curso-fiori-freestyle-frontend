@@ -1,12 +1,12 @@
-<mvc:View controllerName="zov.controller.View1"
+<mvc:View controllerName="zov.controller.View2"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns:core="sap.ui.core"
     xmlns:t="sap.ui.table"
 	xmlns:fb="sap.ui.comp.filterbar"
     xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+    <Page id="page2" title="{i18n>title}">
       
-      <fb:FilterBar id="filterBar1" reset="onFilterReset" search="onFilterSearch">
+      <fb:FilterBar id="filterBar2" reset="onFilterReset" search="onFilterSearch">
 		<fb:filterItems>
 			<fb:FilterItem name="OrdemId" label="{i18n>OrdemId}">
 				<fb:control>
@@ -49,16 +49,28 @@
 					</Select>
 				</fb:control>
 			</fb:FilterItem>
+
+			<fb:FilterItem name="Limite" label="{i18n>Limite}">
+				<fb:control>
+					<Input value="{filter>/Limite}" type="Number"/>
+				</fb:control>
+			</fb:FilterItem>
+
+			<fb:FilterItem name="Offset" label="{i18n>Offset}">
+				<fb:control>
+					<Input value="{filter>/Offset}" type="Number"/>
+				</fb:control>
+			</fb:FilterItem>
 		</fb:filterItems>
 	</fb:FilterBar>
 
-	<t:Table id="table1"
-		rows="{/OVCabSet}"
+	<t:Table id="table2"
+		rows="{table>/}"
 		selectionMode="MultiToggle"
 		class="sapUiSmallMargin"
 		rowMode="Fixed"
-		threshold="5"
-		visibleRowCount="5"
+		threshold="10"
+		visibleRowCount="10"
 		enableBusyIndicator="true"
 		>
 		<t:toolbar>
@@ -70,49 +82,49 @@
 			<t:Column width="100px" sortProperty="OrdemId">
 				<Label text="{i18n>OrdemId}" />
 				<t:template>
-					<Text text="{OrdemId}" wrapping="false" />
+					<Text text="{table>OrdemId}" wrapping="false" />
 				</t:template>
 			</t:Column>
 			<t:Column width="100px" sortProperty="DataCriacao">
 				<Label text="{i18n>DataCriacao}" />
 				<t:template>
-					<Text text="{path: 'DataCriacao', type: 'sap.ui.model.odata.type.Date', formatOptions: { UTC:true, pattern: 'dd/MM/yyyy'}}" wrapping="false" />
+					<Text text="{path: 'table>DataCriacao', type: 'sap.ui.model.odata.type.Date', formatOptions: { UTC:true, pattern: 'dd/MM/yyyy'}}" wrapping="false" />
 				</t:template>
 			</t:Column>
 			<t:Column width="100px" sortProperty="ClienteId" filterProperty="ClienteId" autoResizable="true">
 				<Label text="{i18n>ClienteId}" />
 				<t:template>
-					<Text text="{ClienteId}" wrapping="false" />
+					<Text text="{table>ClienteId}" wrapping="false" />
 				</t:template>
 			</t:Column>
 			<t:Column width="100px" sortProperty="CriadoPor" filterProperty="CriadoPor" autoResizable="true">
 				<Label text="{i18n>CriadoPor}" />
 				<t:template>
-					<Text text="{CriadoPor}" wrapping="false" />
+					<Text text="{table>CriadoPor}" wrapping="false" />
 				</t:template>
 			</t:Column>
 			<t:Column width="100px" sortProperty="TotalItens" filterProperty="TotalItens" autoResizable="true">
 				<Label text="{i18n>TotalItens}" />
 				<t:template>
-					<Text text="{TotalItens}" wrapping="false" />
+					<Text text="{table>TotalItens}" wrapping="false" />
 				</t:template>
 			</t:Column>
 			<t:Column width="100px" sortProperty="TotalFrete" filterProperty="TotalFrete" autoResizable="true">
 				<Label text="{i18n>TotalFrete}" />
 				<t:template>
-					<Text text="{TotalFrete}" wrapping="false" />
+					<Text text="{table>TotalFrete}" wrapping="false" />
 				</t:template>
 			</t:Column>
 			<t:Column width="100px" sortProperty="TotalOrdem" filterProperty="TotalOrdem" autoResizable="true">
 				<Label text="{i18n>TotalOrder}" />
 				<t:template>
-					<Text text="{TotalOrdem}" wrapping="false" />
+					<Text text="{table>TotalOrdem}" wrapping="false" />
 				</t:template>
 			</t:Column>
 			<t:Column width="100px" sortProperty="Status" filterProperty="Status" autoResizable="true">
 				<Label text="{i18n>Status}" />
 				<t:template>
-					<Text text="{path: 'Status', formatter: '.formatter.formatStatus'}" wrapping="false" />
+					<Text text="{path: 'table>Status', formatter: '.formatter.formatStatus'}" wrapping="false" />
 				</t:template>
 			</t:Column>
         </t:columns>

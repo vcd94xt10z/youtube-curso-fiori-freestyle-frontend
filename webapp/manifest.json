@@ -48,7 +48,7 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.123.1",
       "libs": {
@@ -107,6 +107,13 @@
           "target": [
             "TargetView1"
           ]
+        },
+        {
+          "name": "RouteView2",
+          "pattern": "view2",
+          "target": [
+            "TargetView2"
+          ]
         }
       ],
       "targets": {
@@ -116,6 +123,13 @@
           "clearControlAggregation": false,
           "viewId": "View1",
           "viewName": "View1"
+        },
+        "TargetView2": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "View2",
+          "viewName": "View2"
         }
       }
     },
