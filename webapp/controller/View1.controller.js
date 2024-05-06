@@ -1,152 +1,58 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast"
+    "sap/m/MessageToast",
+    "../model/formatter"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller,MessageToast) {
+    function (Controller,MessageToast,formatter) {
         "use strict";
 
         return Controller.extend("zov.controller.View1", {
+            formatter: formatter,
+
             onInit: function () {
                 var oView   = this.getView();
-                var oFModel = new sap.ui.model.json.JSONModel();
+                var oModel = new sap.ui.model.json.JSONModel();
                 
-                oFModel.setData({
-                    "OrdemId": "",
-                    "DataCriacao": "",
-                    "CriadoPor": "",
-                    "ClienteId": "",
-                    "TotalItens": "",
-                    "TotalFrete": "",
-                    "TotalOrdem": "",
-                    "Status": "",
-                    "OrdenacaoCampo": "OrdemId",
-                    "OrdenacaoTipo": "ASC",
-                    "Limite": 10,
-                    "Offset": 0
+                oModel.setData({
+                    "DataCriacao": new Date(),
+                    "Preco": 1500.23,
+                    "Status": "N",
+                    "Moeda": "BRL",
+                    "CPF": "12345678910"
                 });
-                oView.setModel(oFModel,"filter");
-
-                var oTModel = new sap.ui.model.json.JSONModel();
-                oTModel.setData([]);
-                oView.setModel(oTModel,"table");
-    
-                this.onFilterSearch();
+                
+                oView.setModel(oModel,"dados");
             },
 
-            onAtualizarStatus: function(sStatus){
-                var oTable   = this.getView().byId("table1");
-                var oModel   = this.getOwnerComponent().getModel();
-                var aIndex   = oTable.getSelectedIndices();
-                var that     = this;
+            onChangePrice: function(oEvent){
+                var _oInput = oEvent.getSource();
+                var val = _oInput.getValue();
+                val = val.replace(/[^\d]/g, '');
 
-                if(aIndex.length == 0){
-                    MessageToast.show("Selecione uma linha");
+                if(val == ""){
+                    _oInput.setValue(val);
                     return;
                 }
 
-                if(aIndex.length != 1){
-                    MessageToast.show("Selecione apenas uma linha");
-                    return;
+                // removendo zero a esquerda
+                val = val.replace(/^0+/, '');
+
+                var length = val.length;
+                if(length == 1){
+                    val = "0,0"+val;
+                }else if(length == 2){
+                    val = "0,"+val;
+                }else if(length > 2){
+                    val = val.slice(0,length-2)+"."+val.slice(-2);
+                    val = formatter.formatPrice(val);
+                }else{
+                    val = "";
                 }
-
-                var oItem = oTable.getContextByIndex(aIndex[0]);
-                var iOrdemId = oItem.getProperty("OrdemId");
-
-                this.getView().setBusy(true);
-                oModel.callFunction(
-                    "/ZFI_ATUALIZA_STATUS",
-                    {
-                    method: "GET",
-                    urlParameters: {
-                        ID_ORDEMID: iOrdemId,
-                        ID_STATUS: sStatus
-                    },
-                    success: function(oData, response) {
-                        that.getView().setBusy(false);
-                        MessageToast.show("Status atualizado com sucesso");
-                        that.onFilterSearch();
-                    },
-                    error: function(oError) {
-                        that.getView().setBusy(false);
-                        MessageToast.show("Erro ao atualizar status");
-                    }
-                });
-            },
-
-            onFilterReset: function(){
-            },
-    
-            onFilterSearch: function(oEvent){
-                var oView   = this.getView();
-                var oModel  = this.getOwnerComponent().getModel();
-                var oFModel = oView.getModel("filter");
-                var oTModel = oView.getModel("table");
-                var oFData  = oFModel.getData();
-                var oFilter = null;
-                var aParams = [];
-                var that    = this;
-    
-                // aplicando filtros
-                var aSorter  = [];
-                var aFilters = [];
                 
-                if(oFData.OrdemId != ''){
-                    oFilter = new sap.ui.model.Filter({
-                        path: 'OrdemId',
-                        operator: sap.ui.model.FilterOperator.EQ,
-                        value1: oFData.OrdemId
-                    });
-                    aFilters.push(oFilter);
-                }
-    
-                if(oFData.DataCriacao != ''){
-                    oFilter = new sap.ui.model.Filter({
-                        path: 'DataCriacao',
-                        operator: sap.ui.model.FilterOperator.EQ,
-                        value1: oFData.DataCriacao
-                    });
-                    aFilters.push(oFilter);
-                }
-    
-                if(oFData.ClienteId != ''){
-                    oFilter = new sap.ui.model.Filter({
-                        path: 'ClienteId',
-                        operator: sap.ui.model.FilterOperator.EQ,
-                        value1: oFData.ClienteId
-                    });
-                    aFilters.push(oFilter);
-                }
-    
-                var bDescending = false;
-                if(oFData.OrdenacaoTipo == "DESC"){
-                    bDescending = true;
-                }
-                var oSort = new sap.ui.model.Sorter(oFData.OrdenacaoCampo,bDescending);
-                aSorter.push(oSort);
-
-                // limite, offset
-                aParams.push("$top="+oFData.Limite);
-                aParams.push("$skip="+oFData.Offset);
-
-                // executando filtro
-                this.getView().setBusy(true);
-                oModel.read("/OVCabSet",{
-                    sorters: aSorter,
-                    filters: aFilters,
-                    urlParameters: aParams,
-
-                    success: function(oData2, oResponse){
-                        that.getView().setBusy(false);
-                        oTModel.setData(oData2.results);
-                    },
-                    error: function(oError){
-                        that.getView().setBusy(false);
-                        MessageToast.show("Erro");
-                    }
-                });
+                _oInput.setValue(val);
             }
         });
     });

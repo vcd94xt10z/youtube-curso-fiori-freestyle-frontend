@@ -6,135 +6,40 @@
     xmlns="sap.m">
     <Page id="page1" title="{i18n>title}">
       
-      <fb:FilterBar id="filterBar1" reset="onFilterReset" search="onFilterSearch">
-		<fb:filterItems>
-			<fb:FilterItem name="OrdemId" label="{i18n>OrdemId}">
-				<fb:control>
-					<Input value="{filter>/OrdemId}"/>
-				</fb:control>
-			</fb:FilterItem>
+	  	<VBox class="sapUiTinyMargin">
+			<Title text="Exemplos"/>
+			<Text text=""/>
+			
+			<Text text="Data: {dados>/DataCriacao} → {path: 'dados>/DataCriacao', type: 'sap.ui.model.type.DateTime', formatOptions: { UTC:false, pattern: 'dd/MM/yyyy HH:mm:ss'}}"/>
+			<Text text=""/>
 
-			<fb:FilterItem name="ClienteId" label="{i18n>ClienteId}">
-				<fb:control>
-					<Input value="{filter>/ClienteId}"/>
-				</fb:control>
-			</fb:FilterItem>
+			<Text text="Preço: {dados>/Preco} → { path: 'dados>/Preco', formatter: '.formatter.formatPrice'}"/>
+			<Text text="{
+                    parts: ['dados>/Preco','dados>/Moeda'],
+                    type: 'sap.ui.model.type.Currency',
+                    formatOptions: {
+                        groupingEnabled : true,
+						groupingSeparator: '.',
+						decimalSeparator: ',',
+						decimals: 2,
+						showMeasure: false
+                    }
+                }"/>
+			<Text text=""/>
 
-			<fb:FilterItem name="OrdenacaoCampo" label="{i18n>OrdenacaoCampo}">
-				<fb:control>
-					<Select selectedKey="{filter>/OrdenacaoCampo}">
-						<items>
-							<core:Item text="" key=""/>
-							<core:Item text="{i18n>OrdemId}" key="OrdemId"/>
-							<core:Item text="{i18n>ClienteId}" key="ClienteId"/>
-							<core:Item text="{i18n>DataCriacao}" key="DataCriacao"/>
-							<core:Item text="{i18n>CriadoPor}" key="CriadoPor"/>
-							<core:Item text="{i18n>TotalItens}" key="TotalItens"/>
-							<core:Item text="{i18n>TotalFrete}" key="TotalFrete"/>
-							<core:Item text="{i18n>TotalOrdem}" key="TotalOrdem"/>
-							<core:Item text="{i18n>Status}" key="Status"/>
-						</items>
-					</Select>
-				</fb:control>
-			</fb:FilterItem>
+			<Text text="Status: {dados>/Status} → { path: 'dados>/Status', formatter: '.formatter.formatStatus'}"/>
+			<Text text=""/>
 
-			<fb:FilterItem name="OrdenacaoTipo" label="{i18n>OrdenacaoTipo}">
-				<fb:control>
-					<Select selectedKey="{filter>/OrdenacaoTipo}">
-						<items>
-							<core:Item text="" key=""/>
-							<core:Item text="{i18n>ASC}" key="ASC"/>
-							<core:Item text="{i18n>DESC}" key="DESC"/>
-						</items>
-					</Select>
-				</fb:control>
-			</fb:FilterItem>
+			<Text text="CPF: {dados>/CPF} → { path: 'dados>/CPF', formatter: '.formatter.formatCPF'}"/>
+			<Text text=""/>
 
-			<fb:FilterItem name="Limite" label="{i18n>Limite}">
-				<fb:control>
-					<Input value="{filter>/Limite}" type="Number"/>
-				</fb:control>
-			</fb:FilterItem>
+			<Text text="Preço (liveChange)"/>
+			<Input liveChange="onChangePrice"/>
+			<Text text=""/>
 
-			<fb:FilterItem name="Offset" label="{i18n>Offset}">
-				<fb:control>
-					<Input value="{filter>/Offset}" type="Number"/>
-				</fb:control>
-			</fb:FilterItem>
-		</fb:filterItems>
-	</fb:FilterBar>
-
-	<FlexBox alignItems="Center" justifyContent="End">
-		<Button text="Fornecer" class="sapUiTinyMarginEnd" press="onAtualizarStatus('L')"/>
-		<Button text="Faturar" class="sapUiTinyMarginEnd" press="onAtualizarStatus('F')"/>
-		<Button text="Cancelar" class="sapUiTinyMarginEnd" press="onAtualizarStatus('C')"/>
-	</FlexBox>
-
-	<t:Table id="table1"
-		rows="{table>/}"
-		selectionMode="MultiToggle"
-		class="sapUiSmallMargin"
-		rowMode="Fixed"
-		threshold="10"
-		visibleRowCount="10"
-		enableBusyIndicator="true"
-		>
-		<t:toolbar>
-			<OverflowToolbar>
-				<Title id="title" text="Ordens"></Title>
-			</OverflowToolbar>
-		</t:toolbar>
-		<t:columns>
-			<t:Column width="100px" sortProperty="OrdemId">
-				<Label text="{i18n>OrdemId}" />
-				<t:template>
-					<Text text="{table>OrdemId}" wrapping="false" />
-				</t:template>
-			</t:Column>
-			<t:Column width="100px" sortProperty="DataCriacao">
-				<Label text="{i18n>DataCriacao}" />
-				<t:template>
-					<Text text="{path: 'table>DataCriacao', type: 'sap.ui.model.odata.type.Date', formatOptions: { UTC:true, pattern: 'dd/MM/yyyy'}}" wrapping="false" />
-				</t:template>
-			</t:Column>
-			<t:Column width="100px" sortProperty="ClienteId" filterProperty="ClienteId" autoResizable="true">
-				<Label text="{i18n>ClienteId}" />
-				<t:template>
-					<Text text="{table>ClienteId}" wrapping="false" />
-				</t:template>
-			</t:Column>
-			<t:Column width="100px" sortProperty="CriadoPor" filterProperty="CriadoPor" autoResizable="true">
-				<Label text="{i18n>CriadoPor}" />
-				<t:template>
-					<Text text="{table>CriadoPor}" wrapping="false" />
-				</t:template>
-			</t:Column>
-			<t:Column width="100px" sortProperty="TotalItens" filterProperty="TotalItens" autoResizable="true">
-				<Label text="{i18n>TotalItens}" />
-				<t:template>
-					<Text text="{table>TotalItens}" wrapping="false" />
-				</t:template>
-			</t:Column>
-			<t:Column width="100px" sortProperty="TotalFrete" filterProperty="TotalFrete" autoResizable="true">
-				<Label text="{i18n>TotalFrete}" />
-				<t:template>
-					<Text text="{table>TotalFrete}" wrapping="false" />
-				</t:template>
-			</t:Column>
-			<t:Column width="100px" sortProperty="TotalOrdem" filterProperty="TotalOrdem" autoResizable="true">
-				<Label text="{i18n>TotalOrdem}" />
-				<t:template>
-					<Text text="{table>TotalOrdem}" wrapping="false" />
-				</t:template>
-			</t:Column>
-			<t:Column width="100px" sortProperty="Status" filterProperty="Status" autoResizable="true">
-				<Label text="{i18n>Status}" />
-				<t:template>
-					<Text text="{table>Status}" wrapping="false" />
-				</t:template>
-			</t:Column>
-        </t:columns>
-      </t:Table>
-
+			<Text text="Preço (change)"/>
+			<Input change="onChangePrice"/>
+			<Text text=""/>
+		</VBox>
     </Page>
 </mvc:View>
