@@ -6,40 +6,12 @@
     xmlns="sap.m">
     <Page id="page1" title="{i18n>title}">
       
+	  	<core:Fragment fragmentName="zov.view.Header" type="XML" />
+
 	  	<VBox class="sapUiTinyMargin">
-			<Title text="Exemplos"/>
-			<Text text=""/>
-			
-			<Text text="Data: {dados>/DataCriacao} → {path: 'dados>/DataCriacao', type: 'sap.ui.model.type.DateTime', formatOptions: { UTC:false, pattern: 'dd/MM/yyyy HH:mm:ss'}}"/>
-			<Text text=""/>
-
-			<Text text="Preço: {dados>/Preco} → { path: 'dados>/Preco', formatter: '.formatter.formatPrice'}"/>
-			<Text text="{
-                    parts: ['dados>/Preco','dados>/Moeda'],
-                    type: 'sap.ui.model.type.Currency',
-                    formatOptions: {
-                        groupingEnabled : true,
-						groupingSeparator: '.',
-						decimalSeparator: ',',
-						decimals: 2,
-						showMeasure: false
-                    }
-                }"/>
-			<Text text=""/>
-
-			<Text text="Status: {dados>/Status} → { path: 'dados>/Status', formatter: '.formatter.formatStatus'}"/>
-			<Text text=""/>
-
-			<Text text="CPF: {dados>/CPF} → { path: 'dados>/CPF', formatter: '.formatter.formatCPF'}"/>
-			<Text text=""/>
-
-			<Text text="Preço (liveChange)"/>
-			<Input liveChange="onChangePrice"/>
-			<Text text=""/>
-
-			<Text text="Preço (change)"/>
-			<Input change="onChangePrice"/>
-			<Text text=""/>
+			<Text text="Conteúdo"/>
 		</VBox>
+
+		<mvc:XMLView viewName="zov.view.Footer"/>
     </Page>
 </mvc:View>

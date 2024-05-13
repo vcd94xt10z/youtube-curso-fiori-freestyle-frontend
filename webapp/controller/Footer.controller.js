@@ -8,12 +8,12 @@ sap.ui.define([
     function (Controller,MessageToast) {
         "use strict";
 
-        return Controller.extend("zov.controller.View1", {
+        return Controller.extend("zov.controller.Footer", {
             onInit: function () {
             },
 
-            onHeader: function(){
-                alert("onHeader");
+            onFooter: function(){
+                alert("onFooter");
             }
         });
     });
