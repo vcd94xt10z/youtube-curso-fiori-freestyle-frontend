@@ -6,8 +6,7 @@
     xmlns="sap.m">
     <Page id="page1" title="{i18n>title}">
       
-	  	<Button text="Abrir Dialog" press="onOpenDialogInfo" />
-
-        <core:Fragment fragmentName="zov.view.DialogInfo" type="XML" />
+	  	<Button text="Requisição Normal" press="onRequisicaoNormal" />
+        <Button text="Requisição Batch" press="onRequisicaoBatch" />
     </Page>
 </mvc:View>
