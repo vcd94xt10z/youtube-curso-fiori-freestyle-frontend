@@ -6,7 +6,9 @@
     xmlns="sap.m">
     <Page id="page1" title="{i18n>title}">
       
-	  	<Button text="Requisição Normal" press="onRequisicaoNormal" />
-        <Button text="Requisição Batch" press="onRequisicaoBatch" />
+	  	<Button text="Callback" press="onTestCallback" />
+        <Button text="Promise (1)" press="onTestPromise1" />
+        <Button text="Promise (N)" press="onTestPromise2" />
+        
     </Page>
 </mvc:View>
