@@ -12,78 +12,33 @@ sap.ui.define([
             onInit: function () {
             },
 
-            onTestCallback() {
-                console.log("[Processo 1] Inicio");
-                this.onConsultaOrdem(1,function(oData,oResponse){
-                    console.log("[Processo 2] Terminou consulta");
-                    console.log(oData);
-                    console.log(oResponse);
-                });
-                console.log("[Processo 1] Fim");
+            digaOla: function(){
+                alert("Olá");
             },
 
-            onConsultaOrdem: function(iId,callback){
+            onTest: function(){
                 var oModel = this.getOwnerComponent().getModel();
                 oModel.setUseBatch(false);
 
-                oModel.read("/OVCabSet("+iId+")",{
+                console.log("this dentro do controller");
+                console.log(this);
+
+                var that = this;
+                //var controller = this;
+                
+                oModel.read("/OVCabSet(1)",{
                     success: function(oData2, oResponse){
-                        callback(oData2,oResponse);
+                        console.log("this fora do controller");
+                        console.log(this);
+
+                        //console.log("that fora do controller");
+                        //console.log(that);
+
+                        that.digaOla();
+                        //controller.digaOla();
                     },
                     error: function(oError){
                     }
-                });
-            },
-
-            onTestPromise1() {
-                console.log("[Processo 1] Inicio");
-                var oPromise1 = this.onConsultaOrdem2(1);
-                oPromise1.then(function(oData,oResponse){
-                    console.log("[Processo 2] Terminou");
-                    console.log(oData);
-                    console.log(oResponse);
-                });
-                console.log("[Processo 1] Fim");
-            },
-
-            onTestPromise2() {
-                console.log("[Processo 1] Inicio");
-
-                var oPromise1 = this.onConsultaOrdem2(1);
-                oPromise1.then(function(oData,oResponse){
-                    console.log("[Processo 2] Terminou");
-                    //console.log(oData);
-                    //console.log(oResponse);
-                });
-
-                var oPromise2 = this.onConsultaOrdem2(2);
-                oPromise2.then(function(oData,oResponse){
-                    console.log("[Processo 3] Terminou");
-                    //console.log(oData);
-                    //console.log(oResponse);
-                });
-                
-                Promise.all([oPromise1,oPromise2]).then(function(aRetorno){
-                    console.log("[Processo 4] Promise.all terminou");
-                    console.log(aRetorno);
-                });
-
-                console.log("[Processo 1] Fim");
-            },
-
-            onConsultaOrdem2: function(iId){
-                var oModel = this.getOwnerComponent().getModel();
-                oModel.setUseBatch(false);
-
-                return new Promise(function(resolve,reject){
-                    oModel.read("/OVCabSet("+iId+")",{
-                        success: function(oData2, oResponse){
-                            resolve({oData: oData2, oResponse: oResponse});
-                        },
-                        error: function(oError){
-                            reject({oError:oError});
-                        }
-                    });
                 });
             }
         });
