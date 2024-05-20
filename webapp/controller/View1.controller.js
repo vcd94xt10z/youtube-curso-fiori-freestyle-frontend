@@ -12,34 +12,29 @@ sap.ui.define([
             onInit: function () {
             },
 
-            digaOla: function(){
-                alert("Olá");
-            },
-
-            onTest: function(){
-                var oModel = this.getOwnerComponent().getModel();
-                oModel.setUseBatch(false);
-
-                console.log("this dentro do controller");
-                console.log(this);
-
-                var that = this;
-                //var controller = this;
+            onExibirTotal: function(){
+                //debugger;
+                var that     = this;
+                var sOrdemId = this.getView().byId("ordemid").getValue();
+                var oModel   = this.getOwnerComponent().getModel();
                 
-                oModel.read("/OVCabSet(1)",{
+                oModel.read("/OVCabSet("+sOrdemId+")",{
                     success: function(oData2, oResponse){
-                        console.log("this fora do controller");
-                        console.log(this);
-
-                        //console.log("that fora do controller");
-                        //console.log(that);
-
-                        that.digaOla();
-                        //controller.digaOla();
+                        var sMensagem = that.montarMensagem(oData2);
+                        alert(sMensagem);
                     },
                     error: function(oError){
                     }
                 });
+            },
+
+            montarMensagem: function(oOrdem){
+                var sMensagem = "";
+
+                sMensagem += "O valor total da ordem é ";
+                sMensagem += oOrdem.TotalOrdem;
+                
+                return sMensagem;
             }
         });
     });
