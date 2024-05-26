@@ -96,41 +96,20 @@
       },
       "routes": [
         {
-          "name": "RouteOrdemList",
+          "name": "RouteView1",
           "pattern": ":?query:",
           "target": [
-            "TargetOrdemList"
-          ]
-        },
-        {
-          "name": "RouteOrdemNew",
-          "pattern": "ordem/nova",
-          "target": [
-            "TargetOrdemForm"
-          ]
-        },
-        {
-          "name": "RouteOrdemEdit",
-          "pattern": "ordem/{OrdemId}/editar",
-          "target": [
-            "TargetOrdemForm"
+            "TargetView1"
           ]
         }
       ],
       "targets": {
-        "TargetOrdemForm": {
+        "TargetView1": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "OrdemForm",
-          "viewName": "OrdemForm"
-        },
-        "TargetOrdemList": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "OrdemList",
-          "viewName": "OrdemList"
+          "viewId": "View1",
+          "viewName": "View1"
         }
       }
     },

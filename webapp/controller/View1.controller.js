@@ -9,10 +9,13 @@ sap.ui.define([
     function (Controller,History,UIComponent) {
         "use strict";
 
-        return Controller.extend("zov.controller.BaseController", {
-            onProcessar: function(){
-                // implementação...
-                alert("Processado com sucesso (BaseController)");
+        return Controller.extend("zov.controller.View1", {
+
+            onInit: function(){
+            },
+
+            onHello: function(){
+                alert("Hello");
             }
         });
     });
