@@ -24,11 +24,7 @@
           "localUri": "localService/metadata.xml",
           "odataVersion": "2.0"
         }
-      },
-      "usuarios": {
-				"uri": "model/Usuarios.json",
-				"type": "JSON"
-			}
+      }
     }
   },
   "sap.ui": {
@@ -73,10 +69,6 @@
           "bundleName": "zov.i18n.i18n"
         }
       },
-      "usuarios": {
-				"type": "sap.ui.model.json.JSONModel",
-				"dataSource": "usuarios"
-			},
       "": {
         "dataSource": "mainService",
         "preload": true,
@@ -104,20 +96,41 @@
       },
       "routes": [
         {
-          "name": "RouteView1",
+          "name": "RouteOrdemList",
           "pattern": ":?query:",
           "target": [
-            "TargetView1"
+            "TargetOrdemList"
+          ]
+        },
+        {
+          "name": "RouteOrdemNew",
+          "pattern": "ordem/nova",
+          "target": [
+            "TargetOrdemForm"
+          ]
+        },
+        {
+          "name": "RouteOrdemEdit",
+          "pattern": "ordem/{OrdemId}/editar",
+          "target": [
+            "TargetOrdemForm"
           ]
         }
       ],
       "targets": {
-        "TargetView1": {
+        "TargetOrdemForm": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "View1",
-          "viewName": "View1"
+          "viewId": "OrdemForm",
+          "viewName": "OrdemForm"
+        },
+        "TargetOrdemList": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "OrdemList",
+          "viewName": "OrdemList"
         }
       }
     },
