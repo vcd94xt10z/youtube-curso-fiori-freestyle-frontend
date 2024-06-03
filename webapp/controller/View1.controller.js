@@ -14,8 +14,9 @@ sap.ui.define([
             onInit: function(){
             },
 
-            onHello: function(){
-                alert("Hello");
+            onCadastroOrdem: function(){
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("RouteOrdemNew");
             }
         });
     });

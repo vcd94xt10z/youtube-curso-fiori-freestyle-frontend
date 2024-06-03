@@ -1,0 +1,170 @@
+<mvc:View controllerName="zov.controller.OrdemForm"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+    xmlns:t="sap.ui.table"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns="sap.m">
+    <Page id="page2" title="{i18n>OrdemForm}" showNavButton="true" navButtonPress="onPageBack" class="sapUiContentPadding">
+    
+        <VBox>
+            <f:Form id="FormChange354"
+                editable="true">
+                <f:title>
+                    <core:Title text="Cabeçalho" />
+                </f:title>
+                <f:layout>
+                    <f:ResponsiveGridLayout
+                        labelSpanXL="3"
+                        labelSpanL="3"
+                        labelSpanM="3"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="4"
+                        emptySpanL="4"
+                        emptySpanM="4"
+                        emptySpanS="0"
+                        columnsXL="1"
+                        columnsL="1"
+                        columnsM="1"
+                        singleContainerFullSize="false" />
+                </f:layout>
+                <f:formContainers>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement label="{i18n>OrdemId}">
+                                <f:fields>
+                                    <Input value="{/OrdemId}" editable="false"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>DataCriacao}">
+                                <f:fields>
+                                    <DateTimePicker
+                                        id="OVCab.DataCriacao"
+                                        placeholder="Data e hora"
+                                        class="sapUiSmallMarginBottom"
+                                        showFooter="true"
+                                        value="{
+                                            'path':'/DataCriacao',
+                                            'type':'sap.ui.model.type.DateTime',
+                                            'formatOptions': {
+                                                'pattern': 'dd/MM/yyyy HH:mm:ss',
+                                                'UTC': true
+                                            }
+                                        }"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>CriadoPor}">
+                                <f:fields>
+                                    <Input id="OVCab.CriadoPor" value="{/CriadoPor}"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>ClienteId}">
+                                <f:fields>
+                                    <Input id="OVCab.ClienteId" type="Number" value="{/ClienteId}" required="true"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>TotalItens}">
+                                <f:fields>
+                                    <Input value="{path: '/TotalItens', formatter: '.formatter.formatPrice'}" type="Text" editable="false"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>TotalFrete}">
+                                <f:fields>
+                                    <Input id="OVCab.TotalFrete" value="{path: '/TotalFrete', formatter: '.formatter.formatPrice'}" liveChange="liveChangePrice"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>TotalOrdem}">
+                                <f:fields>
+                                    <Input value="{path: '/TotalOrdem', formatter: '.formatter.formatPrice'}" type="Text" editable="false"/>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>Status}">
+                                <f:fields>
+                                    <Select id="OVCab.Status" selectedKey="{/Status}">
+                                        <items>
+                                            <core:Item text="" key=""/>
+                                            <core:Item text="{i18n>StatusN}" key="N"/>
+											<core:Item text="{i18n>StatusL}" key="L"/>
+                                            <core:Item text="{i18n>StatusF}" key="F"/>
+                                            <core:Item text="{i18n>StatusC}" key="C"/>
+                                        </items>
+                                    </Select>
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
+        </VBox>
+        <VBox>
+            <Button text="Novo Item" id="bt-additem" press="onNewItem" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
+
+            <t:Table id="table2"
+				rows="{/toOVItem}"
+				visibleRowCount="10"
+				threshold="0"
+				selectionMode="MultiToggle"
+				class="sapUiSmallMargin"
+				>
+				<t:toolbar>
+					<OverflowToolbar>
+						<Title id="title2" text="Itens"></Title>
+					</OverflowToolbar>
+				</t:toolbar>
+				<t:columns>
+					<t:Column width="60px" sortProperty="ItemId">
+						<Label text="{i18n>ItemId}" />
+						<t:template>
+							<Text text="{ItemId}" wrapping="false" />
+						</t:template>
+					</t:Column>
+                    <t:Column width="100px">
+						<Label text="{i18n>Material}" />
+						<t:template>
+							<Input value="{Material}" type="Number" />
+						</t:template>
+					</t:Column>
+                    <t:Column width="400px">
+						<Label text="{i18n>Descricao}" />
+						<t:template>
+                            <Input value="{Descricao}" />
+						</t:template>
+					</t:Column>
+                    <t:Column width="100px">
+						<Label text="{i18n>Quantidade}" />
+						<t:template>
+							<Input value="{Quantidade}" type="Number" liveChange="liveChangeItemQuantity" />
+						</t:template>
+					</t:Column>
+                    <t:Column width="100px">
+						<Label text="{i18n>PrecoUni}" />
+						<t:template>
+							<Input value="{path: 'PrecoUni', formatter: '.formatter.formatPrice'}" liveChange="liveChangePrice"/>
+						</t:template>
+					</t:Column>
+                    <t:Column width="100px">
+						<Label text="{i18n>PrecoTot}" />
+						<t:template>
+							<Text text="{path: 'PrecoTot', formatter: '.formatter.formatPrice'}" wrapping="false" />
+						</t:template>
+					</t:Column>
+                    <t:Column width="100px">
+						<Label text="{i18n>Options}" />
+						<t:template>
+							<HBox>
+                                <Button app:ItemId="{ItemId}" icon="sap-icon://delete" press="onDeleteItem" class="sapUiTinyMarginBegin"/>
+                            </HBox>
+						</t:template>
+					</t:Column>
+                </t:columns>
+            </t:Table>
+        </VBox>
+        <footer>
+            <Toolbar>
+                <Button id="bt-save" text="Salvar" press="onSave" type="Emphasized"/>
+            </Toolbar>
+        </footer>
+
+    </Page>
+</mvc:View>

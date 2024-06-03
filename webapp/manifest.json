@@ -101,6 +101,13 @@
           "target": [
             "TargetView1"
           ]
+        },
+        {
+          "name": "RouteOrdemNew",
+          "pattern": "ordem/nova",
+          "target": [
+            "TargetOrdemForm"
+          ]
         }
       ],
       "targets": {
@@ -110,6 +117,13 @@
           "clearControlAggregation": false,
           "viewId": "View1",
           "viewName": "View1"
+        },
+        "TargetOrdemForm": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "OrdemForm",
+          "viewName": "OrdemForm"
         }
       }
     },
