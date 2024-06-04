@@ -108,6 +108,13 @@
           "target": [
             "TargetOrdemForm"
           ]
+        },
+        {
+          "name": "RouteOrdemEdit",
+          "pattern": "ordem/{OrdemId}/editar",
+          "target": [
+            "TargetOrdemForm"
+          ]
         }
       ],
       "targets": {
