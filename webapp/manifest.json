@@ -96,10 +96,10 @@
       },
       "routes": [
         {
-          "name": "RouteView1",
+          "name": "RouteOrdemList",
           "pattern": ":?query:",
           "target": [
-            "TargetView1"
+            "TargetOrdemList"
           ]
         },
         {
@@ -118,12 +118,12 @@
         }
       ],
       "targets": {
-        "TargetView1": {
+        "TargetOrdemList": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "View1",
-          "viewName": "View1"
+          "viewId": "OrdemList",
+          "viewName": "OrdemList"
         },
         "TargetOrdemForm": {
           "viewType": "XML",
