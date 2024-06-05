@@ -122,6 +122,43 @@ sap.ui.define([
                 oRouter.navTo("RouteOrdemEdit",{OrdemId:sOrdemId});
             },
 
+            onDelete: function(oEvent){
+                var oSource  = oEvent.getSource();
+                var sOrdemId = oSource.data("OrdemId");
+                var that     = this;
+
+                this.onDeleteOrder(sOrdemId,function(sStatus){
+                    if(sStatus == 'S'){
+                        that.onFilterSearch();
+                    }
+                });
+            },
+
+            onDeleteOrder: function(iOrdemId,callback){
+                var oModel1 = this.getOwnerComponent().getModel();
+                var oView   = this.getView();
+                
+                oView.setBusy(true);
+                oModel1.remove("/OVCabSet("+iOrdemId+")",{
+                    success: function(oData2, oResponse){
+                        if(oResponse.statusCode == 204){
+                            MessageToast.show("Deletado com sucesso");
+                        }else{
+                            MessageToast.show("Erro em deletar");
+                        }
+    
+                        oView.setBusy(false);
+                        callback("S");
+                    },
+                    error: function(oResponse){
+                        var oError = JSON.parse(oResponse.responseText);
+                        MessageToast.show(oError.error.message.value);
+                        oView.setBusy(false);
+                        callback("E");
+                    }}
+                );
+            },
+
             _onRouteMatchedList: function(oEvent){
                 this.onFilterSearch();
             }

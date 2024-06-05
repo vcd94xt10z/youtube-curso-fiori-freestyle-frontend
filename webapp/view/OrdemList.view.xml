@@ -139,6 +139,7 @@
 						<t:template>
 							<HBox>
                                 <Button app:OrdemId="{table>OrdemId}" icon="sap-icon://edit" press="onEdit"/>
+                                <Button app:OrdemId="{table>OrdemId}" icon="sap-icon://delete" press="onDelete" class="sapUiTinyMarginBegin"/>
                             </HBox>
 						</t:template>
 					</t:Column>

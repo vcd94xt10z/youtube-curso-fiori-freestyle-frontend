@@ -214,6 +214,29 @@ sap.ui.define([
                 return oItem;
             },
 
+            onDelete: function(){
+                var oOrdem = this.getOrderOData();
+                var that   = this;
+
+                if(oOrdem.OrdemId == 0){
+                    MessageToast.show("Só é possível deletar uma ordem que existe");
+                    return;
+                }
+
+                this.onDeleteOrder(oOrdem.OrdemId,function(sStatus){
+                    if(sStatus=="S"){
+                        // limpando dados da tela
+                        var oModel = new sap.ui.model.json.JSONModel();
+                        oModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
+                        oModel.setData(that.createEmptyOrderObject());
+                        that.getView().setModel(oModel);
+
+                        // redirecionando para a listagem
+                        sap.ui.core.UIComponent.getRouterFor(that).navTo("RouteOrdemList");
+                    }
+                });
+            },
+
             onSave: function(){
                 var that     = this;
                 var oView    = this.getView();
@@ -243,7 +266,8 @@ sap.ui.define([
                                 // bloqueando campos
                                 oView.byId("OVCab.DataCriacao").setEditable(false);
                                 oView.byId("OVCab.CriadoPor").setEditable(false);
-                                
+                                oView.byId("bt-delete").setVisible(true);
+
                                 MessageToast.show("Ordem cadastrada com sucesso");
                             }else{
                                 MessageToast.show("Erro ao salvar");    
@@ -290,7 +314,8 @@ sap.ui.define([
                 oView.byId("OVCab.DataCriacao").setEditable(true);
                 oView.byId("OVCab.CriadoPor").setEditable(true);
                 oView.byId("OVCab.ClienteId").setValueState("None");
-                
+                oView.byId("bt-delete").setVisible(false);
+
                 this.recalcOrder();
             },
 
@@ -311,6 +336,7 @@ sap.ui.define([
                 oView.byId("OVCab.DataCriacao").setEditable(false);
                 oView.byId("OVCab.CriadoPor").setEditable(false);
                 oView.byId("OVCab.ClienteId").setValueState("None");
+                oView.byId("bt-delete").setVisible(true);
                 
                 oView.setBusy(true);
 
@@ -394,6 +420,31 @@ sap.ui.define([
                 } else {
                     UIComponent.getRouterFor(this).navTo("RouteOrdemList");
                 }
+            },
+
+            onDeleteOrder: function(iOrdemId,callback){
+                var oModel1 = this.getOwnerComponent().getModel();
+                var oView   = this.getView();
+                
+                oView.setBusy(true);
+                oModel1.remove("/OVCabSet("+iOrdemId+")",{
+                    success: function(oData2, oResponse){
+                        if(oResponse.statusCode == 204){
+                            MessageToast.show("Deletado com sucesso");
+                        }else{
+                            MessageToast.show("Erro em deletar");
+                        }
+    
+                        oView.setBusy(false);
+                        callback("S");
+                    },
+                    error: function(oResponse){
+                        var oError = JSON.parse(oResponse.responseText);
+                        MessageToast.show(oError.error.message.value);
+                        oView.setBusy(false);
+                        callback("E");
+                    }}
+                );
             }
         });
     });

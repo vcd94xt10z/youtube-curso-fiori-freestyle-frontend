@@ -163,6 +163,7 @@
         <footer>
             <Toolbar>
                 <Button id="bt-save" text="Salvar" press="onSave" type="Emphasized"/>
+                <Button id="bt-delete" text="Deletar" press="onDelete" type="Reject" visible="false"/>
             </Toolbar>
         </footer>
 
