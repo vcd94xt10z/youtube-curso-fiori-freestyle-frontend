@@ -1,5 +1,6 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    //"sap/ui/core/mvc/Controller",
+    "zov/controller/BaseController",
     "sap/m/MessageToast",
     "../model/formatter"
 ],
@@ -133,32 +134,7 @@ sap.ui.define([
                     }
                 });
             },
-
-            onDeleteOrder: function(iOrdemId,callback){
-                var oModel1 = this.getOwnerComponent().getModel();
-                var oView   = this.getView();
-                
-                oView.setBusy(true);
-                oModel1.remove("/OVCabSet("+iOrdemId+")",{
-                    success: function(oData2, oResponse){
-                        if(oResponse.statusCode == 204){
-                            MessageToast.show("Deletado com sucesso");
-                        }else{
-                            MessageToast.show("Erro em deletar");
-                        }
-    
-                        oView.setBusy(false);
-                        callback("S");
-                    },
-                    error: function(oResponse){
-                        var oError = JSON.parse(oResponse.responseText);
-                        MessageToast.show(oError.error.message.value);
-                        oView.setBusy(false);
-                        callback("E");
-                    }}
-                );
-            },
-
+            
             _onRouteMatchedList: function(oEvent){
                 this.onFilterSearch();
             }
