@@ -1,0 +1,51 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:t="sap.ui.table"
+   xmlns:core="sap.ui.core">
+   <Dialog
+      id="MessageListDialog"
+      title="Informação">
+      <beginButton>
+         <Button text="Fechar" press="onCloseMessageListDialog"/>
+      </beginButton>
+      <content>
+         
+        <t:Table id="table-messagelist-dialog"
+            rows="{messageList>/}"
+            visibleRowCount="10"
+            threshold="0"
+            selectionMode="MultiToggle"
+            class="sapUiSmallMargin"
+            >
+            <t:toolbar>
+                <OverflowToolbar>
+                    <Title text="Mensagens"></Title>
+                </OverflowToolbar>
+            </t:toolbar>
+            <t:columns>
+                <t:Column width="60px" sortProperty="Tipo" hAlign="Center">
+                    <Label text="{i18n>Tipo}" />
+                    <t:template>
+                        <core:Icon
+                            src="{path: 'messageList>Tipo', formatter: '.formatter.getIconStatus'}"
+                            color="{path: 'messageList>Tipo', formatter: '.formatter.getColorStatus'}"
+                            >
+                            <core:layoutData>
+                                <FlexItemData growFactor="1" />
+                            </core:layoutData>
+                        </core:Icon>
+
+                    </t:template>
+                </t:Column>
+                <t:Column sortProperty="Mensagem">
+                    <Label text="{i18n>Mensagem}" />
+                    <t:template>
+                        <Text text="{messageList>Mensagem}" wrapping="false" />
+                    </t:template>
+                </t:Column>
+            </t:columns>
+        </t:Table>
+
+      </content>
+   </Dialog>      
+</core:FragmentDefinition>
