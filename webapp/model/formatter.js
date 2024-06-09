@@ -3,6 +3,24 @@ sap.ui.define([
     "use strict";
 
     return {
+        formatCPF: function(sValue){
+            // removendo tudo, exceto números
+            sValue = sValue.replace(/\D/g, '');
+
+            if(sValue == ""){
+                return "";
+            }
+
+            // adicionando pontuação
+            sValue = sValue.slice(0,3)+"."+
+                     sValue.slice(3,6)+"."+
+                     sValue.slice(6,9)+"-"+
+                     sValue.slice(9,11);
+
+
+            return sValue;
+        },
+        
         formatPrice: function(sValue){
             var oFormatOptions = {
                 groupingEnabled : true,
