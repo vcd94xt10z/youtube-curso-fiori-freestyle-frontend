@@ -25,7 +25,8 @@
     "start-mock": "fiori run --config ./ui5-mock.yaml --open \"test/flpSandbox.html?sap-client=001&sap-ui-xx-viewCache=false#zov-display\"",
     "start-variants-management": "fiori run --open \"preview.html?&sap-client=001&sap-ui-xx-viewCache=false&fiori-tools-rta-mode=true&sap-ui-rta-skip-flex-validation=true#preview-app\"",
     "unit-tests": "fiori run --config ./ui5-mock.yaml --open 'test/unit/unitTests.qunit.html'",
-    "int-tests": "fiori run --config ./ui5-mock.yaml --open 'test/integration/opaTests.qunit.html'"
+    "int-tests": "fiori run --config ./ui5-mock.yaml --open 'test/integration/opaTests.qunit.html?mockdata=true'",
+    "int-tests2": "fiori run --config ./ui5.yaml --open 'test/integration/opaTests.qunit.html'"
   },
   "sapuxLayer": "CUSTOMER_BASE"
 }

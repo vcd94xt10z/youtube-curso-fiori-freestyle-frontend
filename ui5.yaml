@@ -16,7 +16,7 @@ server:
             - /test-resources
           url: https://ui5.sap.com
         backend:
-          - path: /sap
+          - path: /sap/opu
             url: http://vhcalnplci:8000
             client: '001'
     - name: fiori-tools-appreload

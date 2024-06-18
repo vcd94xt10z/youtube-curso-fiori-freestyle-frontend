@@ -7,6 +7,14 @@ sap.ui.define([
     'use strict';
 
     return Controller.extend("zov.controller.BaseController",{
+        isUsingMockData: function(){
+            var oParams = new URLSearchParams(window.location.search);
+            if(oParams.get("mockdata") == 'true'){
+                return true;
+            }
+            return false;
+        },
+
         parseInt: function(sValue){
             if(sValue == "" || sValue == null || sValue == undefined){
                 return 0;

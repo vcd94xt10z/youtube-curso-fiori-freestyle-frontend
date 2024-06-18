@@ -256,6 +256,15 @@ sap.ui.define([
                 }
 
                 if(this.formMode == "I"){
+                    // gerar os IDs quando usa mockdata
+                    if(this.isUsingMockData()){
+                        if(!this.iLastOrdemId){
+                            this.iLastOrdemId = 1000;
+                        }
+                        oOrdem.OrdemId = this.iLastOrdemId;
+                        this.iLastOrdemId++;
+                    }
+
                     oView.setBusy(true);
                     oModel1.create("/OVCabSet",oOrdem,{
                         success: function(oData, oResponse){
@@ -285,20 +294,43 @@ sap.ui.define([
                 }else{
                     oView.setBusy(true);
                     
-                    // com deep entity, o método create é usado para atualizar também
-                    oModel1.create("/OVCabSet",oOrdem,{
-                        success: function(oData, oResponse){
-                            if(oResponse.statusCode == 204 || oResponse.statusCode == 201){
-                                MessageToast.show("Ordem atualizada com sucesso");
-                            }
-                            oView.setBusy(false);
-                        },
-                        error: function(oResponse){
-                            var oError = JSON.parse(oResponse.responseText);
-                            MessageToast.show(oError.error.message.value);
-                            oView.setBusy(false);
-                        }}
-                    );
+                    if(this.isUsingMockData()){
+                        // usando mock, o objeto esta sendo duplicado ao invés de ser atualizado
+                        // para corrigir isso, o objeto anterior esta sendo deletado
+                        oModel1.remove("/OVCabSet("+oOrdem.OrdemId+")",{
+                            success: function(oData2, oResponse){
+                                oModel1.create("/OVCabSet",oOrdem,{
+                                    success: function(oData, oResponse){
+                                        if(oResponse.statusCode == 204 || oResponse.statusCode == 201){
+                                            MessageToast.show("Ordem atualizada com sucesso");
+                                        }
+                                        oView.setBusy(false);
+                                    },
+                                    error: function(oResponse){
+                                        var oError = JSON.parse(oResponse.responseText);
+                                        MessageToast.show(oError.error.message.value);
+                                        oView.setBusy(false);
+                                    }}
+                                );
+                            },
+                            error: function(oResponse){}
+                        });
+                    }else{
+                        // com deep entity, o método create é usado para atualizar também
+                        oModel1.create("/OVCabSet",oOrdem,{
+                            success: function(oData, oResponse){
+                                if(oResponse.statusCode == 204 || oResponse.statusCode == 201){
+                                    MessageToast.show("Ordem atualizada com sucesso");
+                                }
+                                oView.setBusy(false);
+                            },
+                            error: function(oResponse){
+                                var oError = JSON.parse(oResponse.responseText);
+                                MessageToast.show(oError.error.message.value);
+                                oView.setBusy(false);
+                            }}
+                        );
+                    }
                 }
             },
 
