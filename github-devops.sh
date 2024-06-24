@@ -8,6 +8,8 @@ npm install --save-dev @ui5/cli
 npm install --save-dev nwabap-ui5uploader
 npm install --save-dev ui5-test-runner
 
+ui5 -v
+
 # antes de executar, iniciar servidor com dados mock (no linux, coloque um & no final para rodar em background)
 echo -------------------------------------------------------------------
 echo [02/06] Subindo servidor Web em background para executar os testes
