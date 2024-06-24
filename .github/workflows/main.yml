@@ -8,6 +8,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: pwd
-      - run: ls
-      - run: sh ./execute.sh
+      - run: sh .github/workflows/execute.sh
