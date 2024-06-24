@@ -5,7 +5,6 @@ echo -------------------------------------------------------------------
 echo [01/06] Dependencias
 echo -------------------------------------------------------------------
 npm install --global @ui5/cli
-npm install --save-dev @ui5/cli
 npm install --save-dev nwabap-ui5uploader
 npm install --save-dev ui5-test-runner
 npm audit fix
