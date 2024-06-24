@@ -31,10 +31,10 @@ npx ui5-test-runner --url http://localhost:8085/test/integration/opaTests.qunit.
 FILE="integration.txt"
 STRING="Callstack"
 if grep -q "$STRING" "$FILE" ; then
-  echo 'Ocorreu um erro'; 
-  exit(1)
+  echo 'Ocorreu um erro'
+  exit 1
 else
-  echo 'Teste de Integração OK' ; 
+  echo 'Teste de Integração OK'
 fi
 
 # executar build
