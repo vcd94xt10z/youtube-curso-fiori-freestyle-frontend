@@ -25,7 +25,10 @@ npx ui5-test-runner --url http://localhost:8085/test/unit/unitTests.qunit.html
 echo -------------------------------------------------------------------
 echo [04/06] Executando testes integrados
 echo -------------------------------------------------------------------
-npx ui5-test-runner --url http://localhost:8085/test/integration/opaTests.qunit.html
+npx ui5-test-runner --url http://localhost:8085/test/integration/opaTests.qunit.html >> integration.txt
+if grep -q Callstack "integration.txt"; then
+  exit(1)
+fi
 
 # executar build
 echo -------------------------------------------------------------------
