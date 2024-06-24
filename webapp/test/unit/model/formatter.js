@@ -21,7 +21,8 @@ sap.ui.define([
     QUnit.test("Testando formatação de CPF com letras",function(assert){
         var sCPF = "ABC";
         var sValue = formatter.formatCPF(sCPF);
-        assert.ok(sValue == "");
+        //assert.ok(sValue == "");
+        assert.ok(sValue == "111");
         //assert.strictEqual(sValue,"","Formatação de CPF com letras OK");
     });
 });
