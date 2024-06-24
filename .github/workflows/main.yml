@@ -8,5 +8,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: npm install --save-dev @ui5/cli
       - run: sh github-devops.sh
