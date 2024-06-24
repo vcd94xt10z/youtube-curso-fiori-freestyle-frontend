@@ -1,0 +1,5 @@
+- name: Setup Node.js environment
+  uses: actions/setup-node@v4.0.2
+  with:
+    node-version: 20.11.1
+    architecture: x64
