@@ -1,5 +1,7 @@
 # instala as dependências
-npm install
+echo Dependencias
+npm install --global @ui5/cli
+npm install --global ui5-test-runner
 
 # antes de executar, iniciar servidor com dados mock (no linux, coloque um & no final para rodar em background)
 ui5 serve --config ui5-mock.yaml --port 8080 &
