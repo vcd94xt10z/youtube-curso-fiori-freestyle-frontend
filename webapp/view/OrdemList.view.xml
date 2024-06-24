@@ -71,7 +71,7 @@
 				<Button text="Fornecer" press="onChangeStatus('L')" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
 				<Button text="Faturar" press="onChangeStatus('F')" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
 				<Button text="Cancelar" id="bt-cancel" press="onChangeStatus('C')" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
-				<Button text="Nova Ordem" id="bt-new" press="onNew" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
+				<Button text="Nova Ordem" id="bt-new2" press="onNew" class="sapUiSmallMarginEnd sapUiSmallMarginTop"/>
 			</HBox>
 
 			<t:Table id="table1"
