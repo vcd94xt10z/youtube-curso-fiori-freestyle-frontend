@@ -4,16 +4,10 @@ npm install
 echo -------------------------------------------------------------------
 echo [01/06] Dependencias
 echo -------------------------------------------------------------------
-npm install --global @ui5/cli
 npm install --save-dev @ui5/cli
 npm install --save-dev nwabap-ui5uploader
 npm install --save-dev ui5-test-runner
-
 npm audit fix
-echo -------------------------------------------------------------------
-echo [01/06] Testando UI5
-echo -------------------------------------------------------------------
-ui5 -v
 
 # antes de executar, iniciar servidor com dados mock (no linux, coloque um & no final para rodar em background)
 echo -------------------------------------------------------------------
