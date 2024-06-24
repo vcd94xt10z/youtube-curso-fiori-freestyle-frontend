@@ -27,14 +27,15 @@ echo -------------------------------------------------------------------
 echo [04/06] Executando testes integrados
 echo -------------------------------------------------------------------
 npx ui5-test-runner --url http://localhost:8085/test/integration/opaTests.qunit.html >> integration.txt
+cat integration.txt
 
 FILE="integration.txt"
 STRING="Callstack"
 if grep -q "$STRING" "$FILE" ; then
-  echo 'Ocorreu um erro'
+  echo 'Teste de Integração: Erro, faça o teste localmente, ajuste o problema e tente novamente'
   exit 1
 else
-  echo 'Teste de Integração OK'
+  echo 'Teste de Integração: OK'
 fi
 
 # executar build
