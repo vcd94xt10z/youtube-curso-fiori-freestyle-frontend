@@ -20,7 +20,17 @@ ui5 serve --config ui5-mock.yaml --port 8085 &
 echo -------------------------------------------------------------------
 echo [03/06] Executando testes unitários
 echo -------------------------------------------------------------------
-npx ui5-test-runner --url http://localhost:8085/test/unit/unitTests.qunit.html
+npx ui5-test-runner --url http://localhost:8085/test/unit/unitTests.qunit.html >> unit.txt
+cat unit.txt
+
+FILE="unit.txt"
+STRING="failed, expected argument to be truthy"
+if grep -q "$STRING" "$FILE" ; then
+  echo 'Teste Unitário: Erro, faça o teste localmente, ajuste o problema e tente novamente'
+  exit 1
+else
+  echo 'Teste Unitário: OK'
+fi
 
 # testes integrados
 echo -------------------------------------------------------------------
