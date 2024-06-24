@@ -1,7 +1,7 @@
 {
     "base": "./dist",
     "conn_userstrictssl": false,
-    "conn_server": "https://smooth-rings-go.loca.lt/",
+    "conn_server": "https://d9b4-189-14-243-40.ngrok-free.app/",
     "conn_server2": "http://vhcalnplci:8000/",
     "conn_client": "001",
     "conn_user": "DEVELOPER",
